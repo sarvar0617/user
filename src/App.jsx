@@ -1,14 +1,33 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import Contact from "./components/Contact";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const savedContact = JSON.parse(localStorage.getItem("contact"));
   return (
     <div>
-      <h1>Sayt hali push bulmagan... </h1>
+      {savedContact ? (
+        <div className="text-center">
+          <h1 className="text-2xl font-bold">Contact Saved</h1>
+          <p>Your contact information saved successfully</p>
+          <div>
+            <p>
+              <strong>Firstname:</strong> {savedContact.firstname}
+            </p>
+            <p>
+              <strong>Lastname:</strong> {savedContact.lastname}
+            </p>
+            <p>
+              <strong>Category:</strong> {savedContact.category}
+            </p>
+            <p>
+              <strong>Phone:</strong> {savedContact.phone}
+            </p>
+          </div>
+        </div>
+      ) : (
+        <Contact />
+      )}
     </div>
   );
 }
